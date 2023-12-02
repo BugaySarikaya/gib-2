@@ -1,2 +1,89 @@
-
 <h2>Gelir İdaresi Başkanlığı - Angular Eğitimi</h2>
+
+<!-- Data Binding -->
+<!-- 1 way data binding  (3 farklı opsiyonu var) (componentten view'e)-->
+<!-- 1-String Interpolation {{}} -->
+{{title}}
+<br>
+{{50*2}}
+<br>
+{{60/3}}
+<br>
+{{getTitle()}}
+<br>
+<p>
+  <span class="{{makeRedWithClass}}">
+    Kırmızı Metin (class)
+  </span>
+</p>
+
+<p>
+  <span style.color="{{makeRedStyle}}">
+    Kırmızı Metin (style.color)
+  </span>
+</p>
+
+<div>
+  <img src="{{imageRef}}" alt="Logo" width="50">
+</div>
+
+<p>
+  <a href="{{documentLinkRef}}">Angular Document</a>
+</p>
+<hr>
+<!-- 2-property binding [] -->
+<h4>Property Binding - (1-way)</h4>
+
+<p [innerText]="pText"></p>
+<button [disabled]="isButtonDisabled">Click Me</button>
+<img [src]="imageRef" alt="Logo" width="50">
+<input #inputRef type="text" [value]="dynamicValue" (input)="updateDynamicValue($event)">
+<span>Value: {{dynamicValue}}</span>
+<hr>
+
+
+<h4>Event Binding - (1-way) Template->Component ()</h4>
+<button (click)="activateButton()">Activate</button>
+
+<hr>
+<h4>Two Data Binding property binding[] + event binding() = [()]</h4>
+<input type="text" name="firstName" [(ngModel)]="firstName" (ngModelChange)="firstNameChanged($event)">
+<!-- <input type="text" name="firstName" [ngModel]="firstName" (ngModelChange)="firstName = $event"> aslında buna dönüşüyor -->
+<p>FirstName: {{firstName}}</p>
+
+<input type="text" name="firstName" ngModel (ngModelChange)="firstNameChanged($event)">
+<input type="text" name="lastName" (change)="lastNameChanged($event)">
+<hr>
+
+<h4>Pipes</h4>
+{{messageForPipeEx | uppercase}}
+<br>
+{{currentDate}}
+<p>date: {{ currentDate | date}}</p>
+<p>medium : {{currentDate | date:'medium'}} </p>
+<p>short : {{currentDate | date:'short'}} </p>
+<p>fullDate : {{currentDate | date:'fullDate'}} </p>
+<p>longDate : {{currentDate | date:'longDate'}} </p>
+<p>mediumDate : {{currentDate | date:'mediumDate'}} </p>
+<p>shortDate : {{currentDate | date:'shortDate'}} </p>
+<p>mediumTime : {{currentDate | date:'mediumTime'}} </p>
+<p>dd-MM-y : {{currentDate | date:'dd-MM-y'}} </p>
+<p>dd-MM-yy HH:mm : {{currentDate | date:'dd-MM-yy HH:mm'}} </p>
+
+<!-- multiple pipe -->
+<p>Mulitple Pipe: {{currentDate | date:'fullDate' | uppercase}}</p>
+<!-- <p>Mulitple Pipe: {{currentDate | uppercase | date:'fullDate' }}</p> sıralama önemli -->
+
+<!-- multiple parameter pipe -->
+{{ 123.451 | currency:'TRY':'symbol':'1.2-2'}}
+<!-- yuvarlar -->
+{{ 123.456123 | currency:'TRY':'symbol':'1.2-3'}}
+
+{{gibUser | json}}
+
+<!-- custom pipe -->
+<p>
+  {{ randomText | shorten:15 }}
+</p>
+
+<div style="height: 500px;"></div>
