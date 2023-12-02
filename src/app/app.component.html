@@ -86,4 +86,76 @@
   {{ randomText | shorten:15 }}
 </p>
 
+<!-- Async Pipe -->
+<p>Current Time: {{currentTime$ | async | date:'medium'}}</p>
+
+<p>Random Date: {{randomDate}}</p>
+
+<h4>Directives</h4>
+<!-- structural directive  *ngIf *ngFor ngSwitch-->
+
+<div *ngIf="serverCreated; else noServer">
+  Server is created
+</div>
+
+<ng-template #noServer>
+  Server is not created
+</ng-template>
+
+<ng-container *ngTemplateOutlet="noServer"></ng-container>
+<ng-container *ngTemplateOutlet="noServer"></ng-container>
+<ng-container *ngTemplateOutlet="noServer"></ng-container>
+
+<!-- trackby -->
+
+<p>
+  <button (click)="addNewUser()">Add New User</button>
+  <button (click)="refreshUserList()">Refresh User List</button>
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Age</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let user of users; let i = index; let first=first; let last=last; let odd=odd; let even=even; trackBy: trackByFn"
+      [ngClass]="{first: first, last: last, odd: odd, even: even}">
+      <td>{{i}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.surname}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.email}}</td>
+      <td><button (click)="deleteUser(i)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div [ngSwitch]="luckyNumber">
+  <p *ngSwitchCase="1">Number is 1</p>
+  <p *ngSwitchCase="2">Number is 2</p>
+  <p *ngSwitchCase="3">Number is 3</p>
+  <p *ngSwitchCase="6">Number is 6</p>
+  <p *ngSwitchDefault="10">Default number is 10</p>
+</div>
+
+<!-- behavior directives  []-->
+<!-- ngModel -->
+
+<div [ngClass]="{makeRed: isValid()}">Lorem ipsum dolor sit amet.</div>
+<div [ngClass]="{'makeRed': isValid(),'makeBlackBg': isValid()}">Lorem ipsum dolor sit amet.</div>
+<div [ngClass]="['makeRed', 'makeBlackBg']">Lorem ipsum dolor sit amet.</div>
+
+
+<div [ngStyle]="{'color': isValid() ? 'blue' : 'red'}">Lorem ipsum dolor sit amet consectetur.</div>
+
+<p appTurnGreen>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, deserunt?
+</p>
+
 <div style="height: 500px;"></div>
