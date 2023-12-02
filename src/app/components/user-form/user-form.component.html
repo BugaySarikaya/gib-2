@@ -1,0 +1,68 @@
+<p>user-form works!</p>
+
+<!-- form building blocks -->
+<!-- form control <input type="text" name="name" /> -->
+<!-- form group -->
+<!-- form array -->
+
+<!-- formgroup -->
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <p>
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" #fname="ngModel" [(ngModel)]="user.firstName" required
+      minlength="5">
+    <!-- formcontrol -->
+  </p>
+  <div *ngIf="!fname.valid && fname.touched && fname.errors?.['required']" class="error">
+    Firstname is required!
+  </div>
+  <div *ngIf="!fname.valid && fname.errors?.['minlength']">
+    Minlength is 5!!
+  </div>
+  <p>
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName">
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" [(ngModel)]="user.email">
+  </p>
+
+  <p>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" #password="ngModel" [(ngModel)]="user.password" required
+      strengthPassword [appStrengthPassword]="10">
+  </p>
+  <div *ngIf="!password.valid && password.touched && password.errors?.['required']" class="error">
+    Password is required!
+  </div>
+  <div *ngIf="!password.valid && password.errors?.['strengthPassword']" class="error">
+    Password should be at least {{password.errors?.['strengthPassword']}} characters!
+  </div>
+
+  <div ngModelGroup="address">
+    <p>
+      <label for="city">City</label>
+      <input type="text" name="city" [(ngModel)]="user.address.city">
+    </p>
+
+    <p>
+      <label for="street">Street</label>
+      <input type="text" name="street" [(ngModel)]="user.address.street">
+    </p>
+  </div>
+  <p>
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+    <button style="margin-left: 4px;" type="button" (click)="reset(userForm)">Reset Form</button>
+  </p>
+
+  <pre>Value : {{userForm.value | json }} </pre>
+  <pre>Valid : {{userForm.valid}} </pre>
+  <pre>Touched : {{userForm.touched  }} </pre>
+  <pre>Submitted : {{userForm.submitted  }} </pre>
+
+  <pre>Value    : {{fname.value}} </pre>
+  <pre>valid    : {{fname.valid}} </pre>
+  <pre>invalid  : {{fname.invalid}} </pre>
+  <pre>touched  : {{fname.touched}} </pre>
+</form>

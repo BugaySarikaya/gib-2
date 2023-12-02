@@ -3,7 +3,7 @@
 <!-- Data Binding -->
 <!-- 1 way data binding  (3 farklı opsiyonu var) (componentten view'e)-->
 <!-- 1-String Interpolation {{}} -->
-{{title}}
+<!-- {{title}}
 <br>
 {{50*2}}
 <br>
@@ -30,9 +30,9 @@
 <p>
   <a href="{{documentLinkRef}}">Angular Document</a>
 </p>
-<hr>
+<hr> -->
 <!-- 2-property binding [] -->
-<h4>Property Binding - (1-way)</h4>
+<!-- <h4>Property Binding - (1-way)</h4>
 
 <p [innerText]="pText"></p>
 <button [disabled]="isButtonDisabled">Click Me</button>
@@ -47,9 +47,9 @@
 
 <hr>
 <h4>Two Data Binding property binding[] + event binding() = [()]</h4>
-<input type="text" name="firstName" [(ngModel)]="firstName" (ngModelChange)="firstNameChanged($event)">
+<input type="text" name="firstName" [(ngModel)]="firstName" (ngModelChange)="firstNameChanged($event)"> -->
 <!-- <input type="text" name="firstName" [ngModel]="firstName" (ngModelChange)="firstName = $event"> aslında buna dönüşüyor -->
-<p>FirstName: {{firstName}}</p>
+<!-- <p>FirstName: {{firstName}}</p>
 
 <input type="text" name="firstName" ngModel (ngModelChange)="firstNameChanged($event)">
 <input type="text" name="lastName" (change)="lastNameChanged($event)">
@@ -68,33 +68,33 @@
 <p>shortDate : {{currentDate | date:'shortDate'}} </p>
 <p>mediumTime : {{currentDate | date:'mediumTime'}} </p>
 <p>dd-MM-y : {{currentDate | date:'dd-MM-y'}} </p>
-<p>dd-MM-yy HH:mm : {{currentDate | date:'dd-MM-yy HH:mm'}} </p>
+<p>dd-MM-yy HH:mm : {{currentDate | date:'dd-MM-yy HH:mm'}} </p> -->
 
 <!-- multiple pipe -->
-<p>Mulitple Pipe: {{currentDate | date:'fullDate' | uppercase}}</p>
+<!-- <p>Mulitple Pipe: {{currentDate | date:'fullDate' | uppercase}}</p> -->
 <!-- <p>Mulitple Pipe: {{currentDate | uppercase | date:'fullDate' }}</p> sıralama önemli -->
 
 <!-- multiple parameter pipe -->
-{{ 123.451 | currency:'TRY':'symbol':'1.2-2'}}
+<!-- {{ 123.451 | currency:'TRY':'symbol':'1.2-2'}} -->
 <!-- yuvarlar -->
-{{ 123.456123 | currency:'TRY':'symbol':'1.2-3'}}
+<!-- {{ 123.456123 | currency:'TRY':'symbol':'1.2-3'}}
 
-{{gibUser | json}}
+{{gibUser | json}} -->
 
 <!-- custom pipe -->
-<p>
+<!-- <p>
   {{ randomText | shorten:15 }}
-</p>
+</p> -->
 
 <!-- Async Pipe -->
-<p>Current Time: {{currentTime$ | async | date:'medium'}}</p>
+<!-- <p>Current Time: {{currentTime$ | async | date:'medium'}}</p>
 
 <p>Random Date: {{randomDate}}</p>
 
-<h4>Directives</h4>
+<h4>Directives</h4> -->
 <!-- structural directive  *ngIf *ngFor ngSwitch-->
 
-<div *ngIf="serverCreated; else noServer">
+<!-- <div *ngIf="serverCreated; else noServer">
   Server is created
 </div>
 
@@ -108,7 +108,7 @@
 
 <!-- trackby -->
 
-<p>
+<!-- <p>
   <button (click)="addNewUser()">Add New User</button>
   <button (click)="refreshUserList()">Refresh User List</button>
 </p>
@@ -142,13 +142,13 @@
   <p *ngSwitchCase="2">Number is 2</p>
   <p *ngSwitchCase="3">Number is 3</p>
   <p *ngSwitchCase="6">Number is 6</p>
-  <p *ngSwitchDefault="10">Default number is 10</p>
-</div>
+  <p *ngSwitchDefault>Default number is 10</p>
+</div> -->
 
 <!-- behavior directives  []-->
 <!-- ngModel -->
 
-<div [ngClass]="{makeRed: isValid()}">Lorem ipsum dolor sit amet.</div>
+<!-- <div [ngClass]="{makeRed: isValid()}">Lorem ipsum dolor sit amet.</div>
 <div [ngClass]="{'makeRed': isValid(),'makeBlackBg': isValid()}">Lorem ipsum dolor sit amet.</div>
 <div [ngClass]="['makeRed', 'makeBlackBg']">Lorem ipsum dolor sit amet.</div>
 
@@ -158,4 +158,20 @@
 <p appTurnGreen>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, deserunt?
 </p>
 
-<div style="height: 500px;"></div>
+
+<input [(ngModel)]="inputDeger" />
+<p>Girilen Değer: {{ inputDeger }}</p>
+<p *ngIf="inputDeger">
+  Lorem, ipsum dolor.
+</p>
+
+<ul>
+  <li *ngFor="let ogrenci of ogrenciListesi">
+    {{ogrenci | uppercase}}
+  </li>
+</ul>
+
+<div style="height: 500px;"></div> -->
+<!-- <app-parent></app-parent> -->
+<!-- <app-user-form></app-user-form> -->
+<app-user-reactive-form></app-user-reactive-form>

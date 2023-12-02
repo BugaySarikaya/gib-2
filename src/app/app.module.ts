@@ -3,14 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { DatePipe } from '@angular/common';
 import { TurnGreenDirective } from './directives/turn-green.directive';
+import { ParentComponent } from './components/parent/parent.component';
+import { ChildComponent } from './components/child/child.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import { StrengthPasswordDirective } from './directives/strength-password.directive';
+import { UserReactiveFormComponent } from './components/user-reactive-form/user-reactive-form.component';
 
 @NgModule({
-  declarations: [AppComponent, ShortenPipe, TurnGreenDirective],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  declarations: [
+    AppComponent,
+    ShortenPipe,
+    TurnGreenDirective,
+    ParentComponent,
+    ChildComponent,
+    UserFormComponent,
+    StrengthPasswordDirective,
+    UserReactiveFormComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [DatePipe],
   bootstrap: [AppComponent],
 })

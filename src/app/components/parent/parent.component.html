@@ -1,0 +1,12 @@
+<p>Parent Component!</p>
+<h4>Component Interactions</h4>
+
+<!-- <button (click)="increment()">Increment</button>
+<button (click)="decrement()">Decrement</button> -->
+<div #counterDiv>Counter: {{counter}}</div>
+<app-child #child [count]="counter" (countChanged)="countChangeHandler($event)">
+  <content #content>Content from Parent</content>
+  <footer>Footer from Parent</footer>
+</app-child>
+
+<!-- <app-child [CustomCount]="counter"></app-child> -->

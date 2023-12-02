@@ -1,0 +1,52 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" formControlName="firstName">
+  </p>
+  <div *ngIf="!firstName?.valid && firstName?.touched && firstName?.errors?.['required']" class="error">
+    Firstname is required!
+  </div>
+  <p>
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" formControlName="lastName">
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" formControlName="email">
+  </p>
+  <p>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" formControlName="password">
+  </p>
+  <div *ngIf="!password?.valid && password?.touched && password?.errors?.['required']" class="error">
+    Password is required!
+  </div>
+  <div *ngIf="!password?.valid && password?.errors?.['strengthPassword']" class="error">
+    Password should be at least {{password?.errors?.['strengthPassword'].value}} characters!
+  </div>
+
+  <div formGroupName="address">
+    <p>
+      <label for="city">City</label>
+      <input type="text" name="city" formControlName="city">
+    </p>
+
+    <p>
+      <label for="street">Street</label>
+      <input type="text" name="street" formControlName="street">
+    </p>
+  </div>
+  <p>
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+    <button style="margin-left: 4px;" type="button" (click)="reset()">Reset Form</button>
+  </p>
+
+  <pre>Value : {{userForm.value | json }} </pre>
+  <pre>Valid : {{userForm.valid}} </pre>
+  <pre>Touched : {{userForm.touched  }} </pre>
+
+  <pre>Value    : {{firstName?.value}} </pre>
+  <pre>valid    : {{firstName?.valid}} </pre>
+  <pre>invalid  : {{firstName?.invalid}} </pre>
+  <pre>touched  : {{firstName?.touched}} </pre>
+</form>

@@ -38,6 +38,8 @@ export class AppComponent implements OnInit {
   serverCreated: boolean = true;
   users: any[] = [];
   luckyNumber: number = 6;
+  inputDeger = '';
+  ogrenciListesi: string[] = ['ali', 'veli', 'ayşe', 'can'];
 
   constructor(private datePipe: DatePipe) {}
 
