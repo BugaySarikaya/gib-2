@@ -21,9 +21,17 @@
   <div *ngIf="!password?.valid && password?.touched && password?.errors?.['required']" class="error">
     Password is required!
   </div>
+  <!-- <div *ngIf="!password?.valid && password?.errors?.['minlength']" class="error">
+    Password should be at least {{password?.errors?.['minlength'].requiredLength}} characters!
+    You have entered {{password?.errors?.['minlength'].actualLength}} characters!
+  </div> -->
   <div *ngIf="!password?.valid && password?.errors?.['strengthPassword']" class="error">
     Password should be at least {{password?.errors?.['strengthPassword'].value}} characters!
+    You have entered {{password?.errors?.['strengthPassword'].actualLength}} characters!
   </div>
+  <!-- <div *ngIf="!password?.valid && password?.errors?.['strengthPassword']" class="error">
+    Password should be at least {{password?.errors?.['strengthPassword'].value}} characters!
+  </div> -->
 
   <div formGroupName="address">
     <p>

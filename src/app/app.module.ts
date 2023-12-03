@@ -12,6 +12,8 @@ import { ChildComponent } from './components/child/child.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { StrengthPasswordDirective } from './directives/strength-password.directive';
 import { UserReactiveFormComponent } from './components/user-reactive-form/user-reactive-form.component';
+import { RxjsComponent } from './components/rxjs/rxjs.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { UserReactiveFormComponent } from './components/user-reactive-form/user-
     UserFormComponent,
     StrengthPasswordDirective,
     UserReactiveFormComponent,
+    RxjsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [DatePipe],
   bootstrap: [AppComponent],
 })

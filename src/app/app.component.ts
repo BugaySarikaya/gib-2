@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, interval, map } from 'rxjs';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -41,12 +42,16 @@ export class AppComponent implements OnInit {
   inputDeger = '';
   ogrenciListesi: string[] = ['ali', 'veli', 'ayşe', 'can'];
 
-  constructor(private datePipe: DatePipe) {}
+  constructor(private datePipe: DatePipe, private userService: UserService) {}
 
   ngOnInit() {
     this.currentTime$ = interval(1000).pipe(map(() => new Date()));
     this.randomDate = this.datePipe.transform(new Date()) || '';
     this.refreshUserList();
+
+    this.userService
+      .getUser()
+      .subscribe((value: any) => console.log('app component', value));
   }
 
   getTitle() {
@@ -127,7 +132,7 @@ export class AppComponent implements OnInit {
   }
 
   trackByFn(index: number, item: any) {
-    return item.id
+    return item.id;
   }
 
   isValid(): boolean {
