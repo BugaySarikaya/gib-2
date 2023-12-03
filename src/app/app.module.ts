@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,8 +13,13 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { StrengthPasswordDirective } from './directives/strength-password.directive';
 import { UserReactiveFormComponent } from './components/user-reactive-form/user-reactive-form.component';
 import { RxjsComponent } from './components/rxjs/rxjs.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { NotFoundComponent } from './component/not-found/not-found.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
+export const APIURL = new InjectionToken<string>('');
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,9 +31,36 @@ import { HttpClientModule } from '@angular/common/http';
     StrengthPasswordDirective,
     UserReactiveFormComponent,
     RxjsComponent,
+    NotFoundComponent,
+    UserDetailComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
-  providers: [DatePipe],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers: [
+    DatePipe,
+    // {
+    //   provide: UserService,
+    //   useClass: UserService,
+    // },
+    // {
+    //   provide: UserService,
+    //   useClass: BetterUserService,
+    // },
+    {
+      provide: APIURL,
+      useValue: 'http://someendpoint.com/api',
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

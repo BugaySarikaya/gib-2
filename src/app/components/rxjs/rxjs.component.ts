@@ -46,7 +46,7 @@ export class RxjsComponent implements AfterViewInit {
   subject = new Subject<string>();
   behaviorSubject = new BehaviorSubject<string>('test');
 
-  constructor(private http: HttpClient, private userService: UserService) {
+  constructor(private http: HttpClient) {
     // const obs = new Observable<number>((observer: Subscriber<number>) => {
     //   observer.next(1);
     //   observer.next(2);
@@ -152,9 +152,9 @@ export class RxjsComponent implements AfterViewInit {
       this.behaviorSubject.next('hello after 2 seconds');
     }, 4000);
 
-    this.userService
-      .getUser()
-      .subscribe((value: any) => console.log('rxjs component', value));
+    // this.userService
+    //   .getUser()
+    //   .subscribe((value: any) => console.log('rxjs component', value));
   }
 
   ngAfterViewInit() {

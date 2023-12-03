@@ -1,14 +1,14 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <p>
-    <label for="firstName">First Name</label>
-    <input type="text" id="firstName" name="firstName" formControlName="firstName">
+    <label for="name">First Name</label>
+    <input type="text" id="name" name="name" formControlName="name">
   </p>
-  <div *ngIf="!firstName?.valid && firstName?.touched && firstName?.errors?.['required']" class="error">
+  <div *ngIf="!name?.valid && name?.touched && name?.errors?.['required']" class="error">
     Firstname is required!
   </div>
   <p>
-    <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" name="lastName" formControlName="lastName">
+    <label for="surname">Last Name</label>
+    <input type="text" id="surname" name="surname" formControlName="surname">
   </p>
   <p>
     <label for="email">Email </label>
@@ -32,6 +32,10 @@
   <!-- <div *ngIf="!password?.valid && password?.errors?.['strengthPassword']" class="error">
     Password should be at least {{password?.errors?.['strengthPassword'].value}} characters!
   </div> -->
+  <p>
+    <label for="age">Age</label>
+    <input type="text" id="age" name="age" formControlName="age">
+  </p>
 
   <div formGroupName="address">
     <p>
@@ -53,8 +57,42 @@
   <pre>Valid : {{userForm.valid}} </pre>
   <pre>Touched : {{userForm.touched  }} </pre>
 
-  <pre>Value    : {{firstName?.value}} </pre>
-  <pre>valid    : {{firstName?.valid}} </pre>
-  <pre>invalid  : {{firstName?.invalid}} </pre>
-  <pre>touched  : {{firstName?.touched}} </pre>
+  <pre>Value    : {{name?.value}} </pre>
+  <pre>valid    : {{name?.valid}} </pre>
+  <pre>invalid  : {{name?.invalid}} </pre>
+  <pre>touched  : {{name?.touched}} </pre>
 </form>
+
+
+<h3 *ngIf="isLoading">Loading...</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Age</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; let i = index; let first=first; let last=last; let odd=odd; let even=even;"
+      [ngClass]="{first: first, last: last, odd: odd, even: even}">
+      <td>{{i}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.surname}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        <button [routerLink]="['/user', user.id]" [queryParams]="{isUserActive}">
+          Detail
+        </button>
+        <button (click)="deleteUser(user.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Child Page</h4>
+<router-outlet></router-outlet>

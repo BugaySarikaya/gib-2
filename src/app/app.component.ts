@@ -42,16 +42,16 @@ export class AppComponent implements OnInit {
   inputDeger = '';
   ogrenciListesi: string[] = ['ali', 'veli', 'ayşe', 'can'];
 
-  constructor(private datePipe: DatePipe, private userService: UserService) {}
+  constructor(private datePipe: DatePipe) {}
 
   ngOnInit() {
     this.currentTime$ = interval(1000).pipe(map(() => new Date()));
     this.randomDate = this.datePipe.transform(new Date()) || '';
     this.refreshUserList();
 
-    this.userService
-      .getUser()
-      .subscribe((value: any) => console.log('app component', value));
+    // this.userService
+    //   .getUser()
+    //   .subscribe((value: any) => console.log('app component', value));
   }
 
   getTitle() {
